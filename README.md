@@ -1,5 +1,8 @@
 <!--Suggestion from student: instead of having seed.js file pre-built, maybe make it a step and have some sample code to use?-->
 
+[MY HEROKU APP LINK](https://floating-peak-40180.herokuapp.com/)
+
+
 # <img src="https://cloud.githubusercontent.com/assets/7833470/10423298/ea833a68-7079-11e5-84f8-0a925ab96893.png" width="60"> Personal API
 
 Your goal is to build an API about yourself. Your API will incorporate:
