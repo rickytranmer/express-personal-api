@@ -68,6 +68,9 @@ app.get('/api/profile', function profile_display(req, res) {
   })
 });
 
+app.get('/api/concerts', function concerts_index(req, res) {
+  res.json({})
+});
 
 /**********
  * SERVER *
