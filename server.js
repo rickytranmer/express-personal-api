@@ -36,7 +36,7 @@ app.get('/', function homepage(req, res) {
  */
 
 app.get('/api', function api_index(req, res) {
-  // TODO: Document all your api endpoints below
+  //  all api endpoints
   res.json({
     message: "Welcome to my personal api! Here's what you need to know!",
     documentation_url: "https://github.com/rickytranmer/express-personal-api/blob/master/README.md",
@@ -50,6 +50,21 @@ app.get('/api', function api_index(req, res) {
       {method: "PUT", path: "/api/concerts/:id", description: "Update individual concert"}, 
       {method: "DELETE", path: "/api/concerts/:id", description: "Delete individual concert"}
     ]
+  })
+});
+app.get('/api/profile', function api_index(req, res) {
+  //  all api endpoints
+  res.json({
+    message: "Welcome to my profile.  Here is some info and links!",
+    name: "Ricky Tranmer",
+    github_link: "https://github.com/rickytranmer",
+    github_profile_image: "https://avatars2.githubusercontent.com/u/21313782?s=400&u=a04dc51550751d3c0062cad75094dbfed0dc1541&v=4",
+    current_city: "Denver",
+    pets: [{
+      name: "Biko",
+      type: "dog",
+      breed: "Golden Retriever"
+    }]
   })
 });
 
