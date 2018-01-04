@@ -52,10 +52,10 @@ app.get('/api', function api_index(req, res) {
     ]
   })
 });
-app.get('/api/profile', function api_index(req, res) {
-  //  all api endpoints
+
+app.get('/api/profile', function profile_display(req, res) {
   res.json({
-    message: "Welcome to my profile.  Here is some info and links!",
+    message: "Welcome to my profile.  Here's some info and links!",
     name: "Ricky Tranmer",
     github_link: "https://github.com/rickytranmer",
     github_profile_image: "https://avatars2.githubusercontent.com/u/21313782?s=400&u=a04dc51550751d3c0062cad75094dbfed0dc1541&v=4",
@@ -67,6 +67,7 @@ app.get('/api/profile', function api_index(req, res) {
     }]
   })
 });
+
 
 /**********
  * SERVER *
