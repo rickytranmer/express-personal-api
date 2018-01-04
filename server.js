@@ -1,6 +1,7 @@
 // require express and other modules
-var express = require('express'),
-    app = express();
+var express = require('express');
+var app = express();
+var concertsController = require('./controllers/concerts');
 
 // parse incoming urlencoded form data
 // and populate the req.body object
@@ -12,7 +13,7 @@ app.use(bodyParser.json());
  * DATABASE *
  ************/
 
-// var db = require('./models');
+var db = require('./models');
 
 /**********
  * ROUTES *
@@ -35,42 +36,13 @@ app.get('/', function homepage(req, res) {
  * JSON API Endpoints
  */
 
-app.get('/api', function api_index(req, res) {
-  //  all api endpoints
-  res.json({
-    message: "Welcome to my personal api! Here's what you need to know!",
-    documentation_url: "https://github.com/rickytranmer/express-personal-api/blob/master/README.md",
-    base_url: "https://floating-peak-40180.herokuapp.com",
-    endpoints: [
-      {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "DDisplays: name, github_link, github_profile_image, current_city, pets {Displays: name, type, breed"},
-      {method: "GET", path: "/api/concerts", description: "Index of all concerts"},
-      {method: "GET", path: "/api/concerts/:id", description: "Show individual concert"},
-      {method: "POST", path: "/api/concerts", description: "Create a new concert"},
-      {method: "PUT", path: "/api/concerts/:id", description: "Update individual concert"}, 
-      {method: "DELETE", path: "/api/concerts/:id", description: "Delete individual concert"}
-    ]
-  })
-});
-
-app.get('/api/profile', function profile_display(req, res) {
-  res.json({
-    message: "Welcome to my profile.  Here's some info and links!",
-    name: "Ricky Tranmer",
-    github_link: "https://github.com/rickytranmer",
-    github_profile_image: "https://avatars2.githubusercontent.com/u/21313782?s=400&u=a04dc51550751d3c0062cad75094dbfed0dc1541&v=4",
-    current_city: "Denver",
-    pets: [{
-      name: "Biko",
-      type: "dog",
-      breed: "Golden Retriever"
-    }]
-  })
-});
-
-app.get('/api/concerts', function concerts_index(req, res) {
-  res.json({})
-});
+app.get('/api', concertsController.api_index);
+app.get('/api/profile', concertsController.profile_display);
+app.get('/api/concerts', concertsController.concerts_index);
+app.post('/api/concerts', concertsController.concerts_create);
+app.get('/api/concerts/:id', concertsController.concerts_read);
+app.put('/api/concerts/:id', concertsController.concerts_update);
+app.delete('/api/concerts/:id', concertsController.concerts_delete);
 
 /**********
  * SERVER *
