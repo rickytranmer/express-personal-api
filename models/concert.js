@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 var ConcertSchema = new Schema({
 	artist: String,
 	date: Date,
+	venue: String,
 	openers: [String]
 });
 
