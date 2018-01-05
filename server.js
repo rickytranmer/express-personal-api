@@ -13,7 +13,7 @@ app.use(bodyParser.json());
  * DATABASE *
  ************/
 
-var db = require('./models');
+// var db = require('./models');
 
 /**********
  * ROUTES *
@@ -30,7 +30,6 @@ app.use(express.static('public'));
 app.get('/', function homepage(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
-
 
 /*
  * JSON API Endpoints
@@ -52,3 +51,21 @@ app.delete('/api/concerts/:id', concertsController.concerts_delete);
 app.listen(process.env.PORT || 3000, function () {
   console.log('Express server is up and running on http://localhost:3000/');
 });
+
+
+
+	//PROJECT 2//
+/****************
+ * REQUIREMENTS *
+ ****************/
+
+ //TODO - Have at least 2 models (more if they make sense) – one representing someone using your application, and one that represents the main functional idea for your app
+ //TODO - Have at least 2 software unit tests using Mocha and Chai
+ //TODO - Interface with a 3rd Party Web API of your choosing
+ 	// Google Maps?  Imgur?
+ //TODO - Include sign up/log in functionality, with encrypted passwords & an authorization flow
+ //TODO - Have complete RESTful routes for at least one of your resources with GET, POST, PUT, and DELETE
+ //TODO - Utilize Mongo to create a database structure and interact with your JSON-like data
+ //TODO - Include wireframes that you designed during the planning process
+ //TODO - Have semantically clean HTML and CSS
+ // - Be deployed online and accessible to the public
