@@ -65,15 +65,24 @@ var concertsController = {
 		res.json(concertsController.concerts.push(newConcert));
 	},
 	concerts_read: function(req, res) {
-	  res.json(concertsController.concerts.find(function(doc) {
-	  	return (doc._id === Number(req.params.id));
-	  }));
+		res.json(concertsController.concerts.find(function(doc) {
+		 	return (doc._id === Number(req.params.id));
+		}));
 	},
 	concerts_update: function(req, res) {
-	  res.json({});
+		var updateConcert = concertsController.concerts.find(function(doc) {
+		 	return (doc._id === Number(req.params.id));
+		});
+		updateConcert.date = new Date(req.body.y, req.body.m, req.body.d, req.body.h);
+		updateConcert.artist = req.body.a;
+		updateConcert.venue = req.body.v;
+	  	res.json(updateConcert);
 	},
 	concerts_delete: function(req, res) {
-	  res.json({});
+		var deleteConcert = concertsController.concerts.find(function(doc) {
+		 	return (doc._id === Number(req.params.id));
+		});
+		res.json(concertsController.concerts.pop(deleteConcert));
 	}
 };
 
