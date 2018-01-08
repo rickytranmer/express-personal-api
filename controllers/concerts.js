@@ -1,26 +1,6 @@
 var Concert = require('../models/concert');
 
 var concertsController = {
-	concerts: [
-		{
-			date: '2018-02-11',
-			artist: 'Madlib',
-			venue: 'Cervantes Masterpiece Ballroom',
-			_id: 0
-		},
-		{
-			date: '2018-02-21',
-			artist: 'Snarky Puppy',
-			venue: 'Ogden Theatre',
-			_id: 1
-		},
-		{
-			date: '2018-04-17',
-			artist: 'Turnover',
-			venue: 'Summit Music Hall',
-			_id: 2
-		}
-	],
 	api_index: function(req, res) {
 	  //  all api endpoints
 		res.json({
@@ -53,36 +33,41 @@ var concertsController = {
 	  })
 	},
 	concerts_index: function(req, res) {
-		res.json({concerts: concertsController.concerts});
+		db.Concert.find(function(err, doc) {
+			err ? console.log('concerts_index error') : res.json(doc);
+		});
 	},
 	concerts_create: function(req, res) {
 		var newConcert = {
-			date: new Date(req.body.y, req.body.m, req.body.d, req.body.h),
+			date: req.body.y + '-' + req.body.m + '-' + req.body.d,
 			artist: req.body.a,
 			venue: req.body.v,
-			_id: concertsController.concerts[concertsController.concerts.length - 1]._id + 1
+			_id: db.Concert.count() + 1
 		}
-		res.json(concertsController.concerts.push(newConcert));
+		db.Concert.create(newConcert, function(err, doc) {
+			err ? console.log('concerts_create error') : res.json(doc);
+		});
 	},
 	concerts_read: function(req, res) {
-		res.json(concertsController.concerts.find(function(doc) {
+		res.json(db.Concert.find(function(doc) {
 		 	return (doc._id === Number(req.params.id));
 		}));
 	},
 	concerts_update: function(req, res) {
-		var updateConcert = concertsController.concerts.find(function(doc) {
+		var updateConcert = db.Concert.find(function(doc) {
 		 	return (doc._id === Number(req.params.id));
 		});
 		updateConcert.date = new Date(req.body.y, req.body.m, req.body.d, req.body.h);
 		updateConcert.artist = req.body.a;
 		updateConcert.venue = req.body.v;
-	  	res.json(updateConcert);
+		db.Concert.update({_id: Number(req.params.id)}, updateConcert, function(err, newDoc) {
+			err ? console.log('concerts_update error') : res.json(newDoc);
+		});
 	},
 	concerts_delete: function(req, res) {
-		var deleteConcert = concertsController.concerts.find(function(doc) {
-		 	return (doc._id === Number(req.params.id));
+		db.Concert.remove({_id: Number(req.params.id)}, function(err, doc) {
+			err ? console.log('concerts_delete error') : res.json(doc);
 		});
-		res.json(concertsController.concerts.pop(deleteConcert));
 	}
 };
 
