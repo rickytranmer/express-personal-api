@@ -28,7 +28,7 @@ var concerts = [
 		_id: 2
 	}
 ];
-Concert.create(reminders, function(err, docs) {
+Concert.create(concerts, function(err, docs) {
 	if (err) {
 		console.log(err);
 	}
