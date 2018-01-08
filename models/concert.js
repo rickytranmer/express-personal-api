@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 var ConcertSchema = new Schema({
 	date: String,
 	artist: String,
-	venue: String,
-	_id: Number
+	venue: String
 });
 
 var Concert = mongoose.model('Concert', ConcertSchema);
