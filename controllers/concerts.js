@@ -57,7 +57,7 @@ var concertsController = {
 		var updateConcert = db.Concert.find(function(doc) {
 		 	return (doc._id === Number(req.params.id));
 		});
-		updateConcert.date = new Date(req.body.y, req.body.m, req.body.d, req.body.h);
+		updateConcert.date = req.body.y + '-' + req.body.m + '-' + req.body.d;
 		updateConcert.artist = req.body.a;
 		updateConcert.venue = req.body.v;
 		db.Concert.update({_id: Number(req.params.id)}, updateConcert, function(err, newDoc) {
