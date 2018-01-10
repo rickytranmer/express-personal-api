@@ -12,20 +12,17 @@ var concerts = [
 	{
 		date: '2018-02-11',
 		artist: 'Madlib',
-		venue: 'Cervantes Masterpiece Ballroom',
-		_id: 0
+		venue: 'Cervantes Masterpiece Ballroom'
 	},
 	{
 		date: '2018-02-21',
 		artist: 'Snarky Puppy',
-		venue: 'Ogden Theatre',
-		_id: 1
+		venue: 'Ogden Theatre'
 	},
 	{
 		date: '2018-04-17',
 		artist: 'Turnover',
-		venue: 'Summit Music Hall',
-		_id: 2
+		venue: 'Summit Music Hall'
 	}
 ];
 Concert.create(concerts, function(err, docs) {

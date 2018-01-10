@@ -41,8 +41,7 @@ var concertsController = {
 		var newConcert = {
 			date: req.body.y + '-' + req.body.m + '-' + req.body.d,
 			artist: req.body.a,
-			venue: req.body.v,
-			_id: db.Concert.count() + 1
+			venue: req.body.v
 		}
 		db.Concert.create(newConcert, function(err, doc) {
 			err ? console.log('concerts_create error') : res.json(doc);
